@@ -1,4 +1,4 @@
-## Advancing the Landscape of NL2SQL: A Comprehensive Evaluation of Phi-2 and DeFog Approaches
+## Advancing the Landscape of NL2SQL: A Comprehensive Evaluation of Fine-tuned Phi-2 and DeFog sqlcoder Approaches
 
 __Abstract:__
 
@@ -16,9 +16,9 @@ Three pivotal questions guide our investigation:
 
 ---
 
-Our comparative analysis aims to bridge the accuracy-interpretability gap inherent in NL2SQL models, shedding light on the unique attributes of both Phi-2 and DeFog approaches. By examining their performance under different difficulty levels, we seek to provide a nuanced understanding of the strengths and weaknesses inherent in each model.
+Our comparative analysis aims to bridge the accuracy-deployability gap inherent in NL2SQL models, shedding light on the unique attributes of both Phi-2 and DeFog approaches. By examining their performance under different difficulty levels, we seek to provide a nuanced understanding of the strengths and weaknesses inherent in each model.
 
-This research not only contributes to the academic discourse surrounding NL2SQL but also holds practical implications for developers and users. The insights gained from this study have the potential to reshape the future of NL2SQL development. By prioritizing explainability alongside accuracy, we aim to pave the way for transparent and trustworthy models. This, in turn, empowers developers and users to confidently interact with and comprehend the logic behind generated SQL queries.
+This research not only contributes to the academic discourse surrounding NL2SQL but also holds practical implications for developers and users. The insights gained from this study have the potential to reshape the future of NL2SQL development. By prioritizing delpoyability alongside accuracy, we aim to pave the way for capable yet small models. This, in turn, empowers developers and users to easily interact with and comprehend the logic behind generated SQL queries.
 
 In summary, this dissertation project undertakes a meticulous exploration of Phi-2 and DeFog in the context of NL2SQL, aiming to provide valuable insights that can inform the development and application of these models. Through this comparative analysis, we anticipate contributing to the ongoing dialogue on the intersection of accuracy and interpretability in NL2SQL, with the ultimate goal of advancing the field towards more transparent and user-friendly solutions.
 
