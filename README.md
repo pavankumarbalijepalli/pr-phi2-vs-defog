@@ -2,9 +2,9 @@
 
 __Abstract:__
 
-The ongoing evolution of Natural Language to SQL (NL2SQL) translation presents a critical intersection, accentuating the delicate balance between accuracy and interpretability. This research undertakes a thorough examination of two prominent models, Phi-2 and DeFog, to illuminate the future trajectory of NL2SQL.
+The ongoing evolution of Natural Language to SQL (NL2SQL) translation presents a critical intersection, accentuating the delicate balance between accuracy and usability. This research undertakes a thorough examination of, the leader of small language models, Phi-2 and the leader in NL2SQL tasks, DeFog sqlcoder, to illuminate the future trajectory of NL2SQL.
 
-While DeFog SQL excels in generating accurate SQL queries, concerns have been raised regarding its internal mechanisms and explainability. In contrast, Phi-2 is a fine-tuned model explicitly designed to prioritize interpretability. This study aims to explore and compare their performance across diverse NL2SQL tasks, introducing a nuanced understanding of their strengths and limitations.
+While DeFog SQLcoder excels in generating accurate SQL queries, concerns have been raised regarding its ability to run on a lower compute machines. In contrast, Phi-2 is a small langugage model explicitly designed to run on smaller machines. This study aims to explore and compare their performance across diverse NL2SQL tasks, introducing a nuanced understanding of their strengths and limitations.
 
 Three pivotal questions guide our investigation:
 
@@ -13,6 +13,8 @@ Three pivotal questions guide our investigation:
 2. **Interpretability Enhancement:** Does the fine-tuning of Phi-2 with a SQL dataset result in improved interpretability and explainability of generated queries when compared to DeFog models?
 
 3. **Difficulty Level Dynamics:** How do the performance and interpretability of Phi-2 and DeFog vary across difficulty levels, ranging from Easy to Medium and Hard?
+
+---
 
 Our comparative analysis aims to bridge the accuracy-interpretability gap inherent in NL2SQL models, shedding light on the unique attributes of both Phi-2 and DeFog approaches. By examining their performance under different difficulty levels, we seek to provide a nuanced understanding of the strengths and weaknesses inherent in each model.
 
