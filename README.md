@@ -26,3 +26,4 @@ Through this fine-tuning and comparative analysis, we anticipate contributing to
 
 **Resources:**
 - https://huggingface.co/microsoft/phi-2/discussions/19
+- https://huggingface.co/microsoft/phi-2/discussions/25
