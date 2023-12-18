@@ -22,3 +22,7 @@ Through this fine-tuning and comparative analysis, we anticipate contributing to
 - [2] - Li, Yuanzhi, et al. "Textbooks are all you need ii: phi-1.5 technical report." arXiv preprint arXiv:2309.05463 (2023).
 - [3] - Korthikanti, Vijay Anand, et al. "Reducing activation recomputation in large transformer models." Proceedings of Machine Learning and Systems 5 (2023).
 - [4] - Microsoft Research. "Phi-2: The Surprising Power of Small Language Models." Microsoft Research Blog, 26 Oct. 2023
+
+
+**Resources:**
+- https://huggingface.co/microsoft/phi-2/discussions/19
