@@ -23,7 +23,13 @@ Through this fine-tuning and comparative analysis, we anticipate contributing to
 - [3] - Korthikanti, Vijay Anand, et al. "Reducing activation recomputation in large transformer models." Proceedings of Machine Learning and Systems 5 (2023).
 - [4] - Microsoft Research. "Phi-2: The Surprising Power of Small Language Models." Microsoft Research Blog, 26 Oct. 2023
 
-
 **Resources:**
 - https://huggingface.co/microsoft/phi-2/discussions/19
 - https://huggingface.co/microsoft/phi-2/discussions/25
+
+**From Subramanian Sir**
+- What are you going to improve, usability or performance or interpretebility?
+- have a feasible, flexible, straight forward objective. 
+- Perform good literature survey - 4 to 5 Papers doing similar approach
+- For Midterm - Architecture, Flowdiagram, Tech stack, Approach (comparision between existing approaches)
+- Evaluation Methods - evaluation between the approaches, evaluation between the training and testing.
