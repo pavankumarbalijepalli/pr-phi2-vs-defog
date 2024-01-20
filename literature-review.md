@@ -80,8 +80,44 @@ Faster development: Fine-tuning pre-trained LLMs requires less training data and
 ---
 ## DONE TILL HERE
 ### Phi-2 and Defog SQL:
-    * Describe the architecture and training of Phi-2 and Defog SQL.
-    * Highlight their specific strengths and weaknesses for NL2SQL tasks, based on existing literature.
+
+Both Phi-2 and Defog SQLCoder 7b are powerful models tackling the NL2SQL challenge, but they take different approaches. Let's delve into their architecture, training, strengths, and weaknesses:
+
+- __Phi-2:__
+   - Architecture:
+      - Small Transformer model: Built with fewer parameters than other LLMs, making it lighter and faster to train and run.
+      - Dense Attention Network (DAN): Focuses on interactions between words in a sentence, capturing long-range dependencies crucial for understanding complex language.
+      - Encoder-Decoder structure: Encodes the natural language query and decodes it into an executable SQL statement.
+   - Training:
+      - Supervised learning: Trained on a large dataset of paired natural language queries and their corresponding SQL statements.
+      - Focus on general language understanding: Leverages pre-training on diverse text data before fine-tuning for NL2SQL.
+   - Strengths:
+      - Smaller size: More accessible for deployment and faster inference compared to larger LLMs.
+      - Strong language understanding: Captures complex linguistic relationships in natural language queries.
+      - Good performance on simple and intermediate queries: Demonstrates accuracy on a variety of NL2SQL tasks.
+   - Weaknesses:
+      - Limited capacity for complex queries: May struggle with tasks involving joins, aggregations, or subqueries.
+      - Explainability challenges: Understanding how Phi-2 arrives at its SQL translations can be difficult.
+      - Susceptibility to biases: Potential for inheriting biases from the pre-training data.
+- __Defog SQLCoder 7b:__
+
+   - Architecture:
+      - Hybrid model: Combines a Syntactic Transformer Encoder with a Semantic Role Labeler Decoder.
+      - Syntactic Transformer Encoder: Analyzes the syntax and structure of the natural language query.
+      - Semantic Role Labeler Decoder: Identifies the semantic roles of words and constructs the corresponding SQL statement based on these roles.
+   - Training:
+      - Multi-stage training: First trained on synthetic SQL-like data, then fine-tuned on real-world NL2SQL pairs.
+      - Focus on semantic roles: Emphasizes understanding the meaning and relationships between words in the query.
+   - Strengths:
+      - Stronger performance on complex queries: Handles joins, aggregations, and subqueries with greater accuracy than Phi-2.
+      - Improved explainability: Semantic role labeling provides transparency into the model's reasoning process.
+      - Less susceptible to biases: Multi-stage training with synthetic data helps mitigate bias issues.
+   - Weaknesses:
+      - Larger model size: Requires more computational resources for training and deployment compared to Phi-2.
+      - Potentially slower inference: Decoding based on semantic roles might be computationally expensive.
+      - Limited general language understanding: Focus on semantic roles could miss subtle nuances in natural language queries.
+
+__Summary:__ Choosing between Phi-2 and Defog SQLCoder 7b depends on your specific needs. If you require a smaller, faster model for simple and intermediate NL2SQL tasks, Phi-2 might be a good choice. However, if you need to handle complex queries with high accuracy and explainability, Defog SQLCoder 7b might be the better option, despite its larger size and potentially slower inference. Remember, this is just a high-level comparison based on existing literature. Further research and experimentation might be needed to determine the optimal model for your specific use case.
 
 #### Fine-tuning Phi-2 for NL2SQL
 
