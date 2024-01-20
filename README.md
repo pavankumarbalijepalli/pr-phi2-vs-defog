@@ -26,6 +26,13 @@ Through this fine-tuning and comparative analysis, we anticipate contributing to
 **Resources:**
 - https://huggingface.co/microsoft/phi-2/discussions/19
 - https://huggingface.co/microsoft/phi-2/discussions/25
+- https://www.researchgate.net/publication/371606235_Interleaving_Pre-Trained_Language_Models_and_Large_Language_Models_for_Zero-Shot_NL2SQL_Generation
+- https://www.researchgate.net/publication/376006010_On_Finetuning_Large_Language_Models
+- https://www.researchgate.net/publication/370981726_QLoRA_Efficient_Finetuning_of_Quantized_LLMs
+- https://www.researchgate.net/publication/373487790_Text-to-SQL_Empowered_by_Large_Language_Models_A_Benchmark_Evaluation
+- https://www.researchgate.net/publication/375550953_Prompting_GPT-35_for_Text-to-SQL_with_De-semanticization_and_Skeleton_Retrieval
+- https://www.researchgate.net/publication/371606235_Interleaving_Pre-Trained_Language_Models_and_Large_Language_Models_for_Zero-Shot_NL2SQL_Generation
+- https://arxiv.org/pdf/2106.09685.pdf
 
 **From Subramanian Sir**
 - What are you going to improve, usability or performance or interpretebility?
