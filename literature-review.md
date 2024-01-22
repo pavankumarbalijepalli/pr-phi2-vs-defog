@@ -77,8 +77,6 @@ __Fine-tuning LLMs for NL2SQL Use Cases:__
 - Improved performance: LLMs offer the potential for better accuracy and robustness in handling complex queries compared to traditional models.
 Faster development: Fine-tuning pre-trained LLMs requires less training data and can be quicker to implement than training new models from scratch.
 
----
-## DONE TILL HERE
 ### Phi-2 and Defog SQL:
 
 Both Phi-2 and Defog SQLCoder 7b are powerful models tackling the NL2SQL challenge, but they take different approaches. Let's delve into their architecture, training, strengths, and weaknesses:
@@ -117,21 +115,78 @@ Both Phi-2 and Defog SQLCoder 7b are powerful models tackling the NL2SQL challen
       - Potentially slower inference: Decoding based on semantic roles might be computationally expensive.
       - Limited general language understanding: Focus on semantic roles could miss subtle nuances in natural language queries.
 
-__Summary:__ Choosing between Phi-2 and Defog SQLCoder 7b depends on your specific needs. If you require a smaller, faster model for simple and intermediate NL2SQL tasks, Phi-2 might be a good choice. However, if you need to handle complex queries with high accuracy and explainability, Defog SQLCoder 7b might be the better option, despite its larger size and potentially slower inference. Remember, this is just a high-level comparison based on existing literature. Further research and experimentation might be needed to determine the optimal model for your specific use case.
+Choosing between Phi-2 and Defog SQLCoder 7b depends on your specific needs. If you require a smaller, faster model for simple and intermediate NL2SQL tasks, Phi-2 might be a good choice. However, if you need to handle complex queries with high accuracy and explainability, Defog SQLCoder 7b might be the better option, despite its larger size and potentially slower inference. Remember, this is just a high-level comparison based on existing literature. Further research and experimentation might be needed to determine the optimal model for your specific use case.
 
-#### Fine-tuning Phi-2 for NL2SQL
+### Fine-tuning Phi-2 for NL2SQL
 
-* **Dataset Selection:**
-    * Discuss the choice of dataset for fine-tuning Phi-2, considering size, diversity, and alignment with your evaluation tasks.
-    * Explain the importance of dataset quality and potential biases.
-* **Fine-tuning Techniques:**
-    * Describe the specific fine-tuning approach used for Phi-2, including hyperparameter settings and optimization methods.
-    * Reference relevant research on fine-tuning LLMs for NL2SQL tasks.
-* **Evaluation Metrics:**
-    * Define the metrics used to evaluate the performance of Phi-2 on NL2SQL tasks (e.g., accuracy, precision, recall, F1-score).
-    * Explain the rationale behind the chosen metrics.
+**Dataset Selection for Fine-tuning Phi-2: Size, Diversity, and Bias Considerations**
 
-#### Comparison with Defog SQL Models
+Dataset selection is crucial for maximizing the effectiveness of your fine-tuned Phi-2 model for NL2SQL tasks. Here's a breakdown of key considerations:
+
+   - __Size:__
+      - Larger datasets generally lead to better performance: More data exposes Phi-2 to a wider range of query styles and SQL constructs, enhancing its ability to generalize and handle unseen data.
+      - Balance size with computational resources: Training on massive datasets can be computationally expensive, requiring specialized hardware and expertise. Consider your available resources and find a balance between data size and feasibility.
+      - Tailor size to your evaluation tasks: If your primary concerns are simple and intermediate queries, a smaller dataset focused on those types might be sufficient.
+      
+   - __Diversity:__
+      - Include diverse query styles and complexities: Choose a dataset representing a variety of natural language formulations, database schemas, and query types (e.g., selection, aggregation, joins). This broadens Phi-2's understanding and improves its adaptability to real-world scenarios.
+      - Cover diverse database domains: If your NL2SQL application targets specific domain areas (e.g., finance, healthcare), prioritize datasets containing queries and databases relevant to those domains.
+      - Beware of domain mismatch: Avoid heavily relying on a dataset specific to a single domain if your goal is broader applicability. This can lead to overfitting and poor performance on diverse tasks.
+        
+   - __Alignment with Evaluation Tasks:__
+      - Match the types of queries in your evaluation dataset with the training data: This ensures that Phi-2 is trained on similar tasks it will be evaluated on, leading to more accurate and meaningful results.
+      - Consider the evaluation metrics you will use: If your metrics focus on specific aspects of NL2SQL accuracy (e.g., handling joins, accuracy on complex queries), prioritize datasets providing data for those aspects.
+      - Don't rely solely on benchmark datasets: While popular benchmarks like Spider and WikiSQL are valuable, consider supplementing them with domain-specific or task-specific data for tailored performance.
+        
+   - __Dataset Quality and Potential Biases:__
+      - Seek high-quality, well-annotated datasets: Ensure the data is accurate, consistent, and free from errors or inconsistencies that could mislead the model.
+      - Pay attention to potential biases: Datasets can reflect biases present in their source data or human annotations. Analyze the dataset for potential biases in wording, database representations, or query types, and take steps to mitigate them during training and evaluation.
+      - Consider data augmentation techniques: Augmenting your dataset with synthetic data or paraphrased queries can further diversify it and help mitigate biases while improving generalizability.
+   
+**Fine-tuning Phi-2 for NL2SQL: Techniques and Resources**
+
+Fine-tuning Phi-2 for NL2SQL requires careful consideration of hyperparameters and optimization methods to maximize its performance. Here's a breakdown of common approaches and relevant research:
+
+   - __Fine-tuning Approach:__
+      - Freeze most parameters: Unlike traditional training from scratch, fine-tuning typically freezes a large portion of the pre-trained LLM parameters (e.g., encoder layers). This preserves the general language understanding while allowing adjustments for the specific NL2SQL task.
+      - Fine-tune decoder and additional layers: A smaller set of parameters in the decoder and potentially add-on layers are fine-tuned on the NL2SQL dataset. These layers learn the mapping between natural language and SQL syntax.
+      - Loss function: Choosing an appropriate loss function is crucial. Options include:
+         - Supervised learning loss: Measures the difference between the model's predicted SQL and the ground truth SQL (e.g., cross-entropy loss).
+         - Reinforcement learning loss: Rewards the model for generating valid and semantically correct SQL statements.
+           
+   - __Hyperparameter Settings:__
+      - Learning rate: This controls the pace of parameter updates during fine-tuning. Start with a smaller learning rate (e.g., 1e-5) than pre-training and adjust based on validation performance.
+      - Optimizer: Popular choices include Adam and AdamW, known for their efficiency and stability in handling sparse gradients from LLMs.
+      - Batch size: Larger batch sizes generally lead to faster training but require more memory. Tune the batch size based on your available resources and model configuration.
+      - Gradient clipping: Prevents exploding gradients during training, especially with larger learning rates. Experiment with different clipping values to ensure stable training.
+        
+   - __Optimization Methods:__
+      - Early stopping and checkpointing: Regularly monitor validation performance and stop training once it starts to plateau. Checkpointing allows you to resume training from a previous state if needed.
+      - Warm-up schedule: Gradually increase the learning rate from a very low value over the first few training steps to stabilize the model before full learning.
+      - Regularization techniques: L1 or L2 regularization can help prevent overfitting and improve generalizability.
+
+**Evaluating Fine-tuned Phi-2: Choosing the Right Metrics for NL2SQL**
+
+Evaluating the performance of your fine-tuned Phi-2 for NL2SQL requires choosing the right metrics to objectively assess its strengths and weaknesses. Here's a breakdown of essential metrics and their rationale:
+
+   - __Accuracy and Accuracy@k:__
+      - Definition: Measures the percentage of queries for which the generated SQL statement exactly matches the ground truth. Accuracy@k considers the top k predictions, allowing for partial credit when the exact match is not found.
+      - Rationale: A basic and easy-to-understand metric, accuracy tells you how often Phi-2 gets the SQL syntax completely right. However, it can be overly strict and penalize minor differences that don't affect the semantic correctness of the query.
+   
+   - __Precision and Recall:__
+      - Definition: Precision measures the proportion of generated SQL statements that are semantically correct (true positives), while recall measures the proportion of ground truth SQL statements that are successfully generated (true positives / all positives).
+      - Rationale: These metrics provide a finer-grained picture of Phi-2's ability to capture the meaning of the query and translate it into a functionally correct SQL statement, even if the syntax might differ slightly.
+   
+   - __F1-score:__
+      - Definition: Harmonic mean of precision and recall, providing a balanced measure of both aspects.
+      - Rationale: F1-score offers a compromise between precision and recall, balancing strictness with coverage. It's a valuable metric when both aspects are equally important in your application.
+   
+   - __Additional Metrics:__
+      - Semantic similarity metrics: BLEU and ROUGE score the semantic similarity between generated and ground truth SQL, offering a more nuanced evaluation of meaning preservation.
+      - Execution time: Measures the time taken for the generated SQL to execute in the database, relevant for practical applications where efficiency matters.
+      - Domain-specific metrics: Depending on your NL2SQL application's domain (e.g., finance, healthcare), consider specialized metrics that assess performance for particular types of queries or data.
+
+## 3. Methodology
 
 * **Review of Existing Comparisons:**
     * Summarize existing studies that compare Defog SQL models with other approaches for NL2SQL.
@@ -159,3 +214,9 @@ __Summary:__ Choosing between Phi-2 and Defog SQLCoder 7b depends on your specif
     * Summarize the main contributions of your research and their significance.
 * **Suggest future work:**
     * Propose potential avenues for further research in this area, building upon your findings.
+
+
+__References:__
+- "Fine-tuning Language Models for NL2SQL with Noisy Data" by Chen et al. (2023): Explores fine-tuning LLMs for NL2SQL on noisy and incomplete datasets, addressing a common challenge in real-world applications.
+- "Learning to Generate SQL Query Plans from Natural Language Descriptions" by Yin et al. (2022): Introduces a novel approach for NL2SQL that generates query plans alongside SQL statements, providing more flexibility and efficiency.
+- "A Survey of Neural Natural Language to SQL Parsing" by Hu et al. (2021): Offers a comprehensive overview of various neural LLM-based approaches for NL2SQL, including their strengths and weaknesses.
