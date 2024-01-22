@@ -153,7 +153,7 @@ Fine-tuning Phi-2 for NL2SQL requires careful consideration of hyperparameters a
       - Loss function: Choosing an appropriate loss function is crucial. Options include:
          - Supervised learning loss: Measures the difference between the model's predicted SQL and the ground truth SQL (e.g., cross-entropy loss).
          - Reinforcement learning loss: Rewards the model for generating valid and semantically correct SQL statements.
-           
+              
    - __Hyperparameter Settings:__
       - Learning rate: This controls the pace of parameter updates during fine-tuning. Start with a smaller learning rate (e.g., 1e-5) than pre-training and adjust based on validation performance.
       - Optimizer: Popular choices include Adam and AdamW, known for their efficiency and stability in handling sparse gradients from LLMs.
@@ -188,16 +188,38 @@ Evaluating the performance of your fine-tuned Phi-2 for NL2SQL requires choosing
 
 ## 3. Methodology
 
-* **Review of Existing Comparisons:**
-    * Summarize existing studies that compare Defog SQL models with other approaches for NL2SQL.
-    * Extract key findings and insights relevant to your comparison.
-* **Your Experimental Setup:**
-    * Describe the dataset(s) and evaluation metrics used for your comparison.
-    * Explain the configuration of Defog SQL models used for benchmarking.
-* **Results and Analysis:**
-    * Present the performance results of Phi-2 and Defog SQL models on the chosen evaluation tasks.
-    * Conduct a thorough analysis of the results, identifying strengths and weaknesses of each model.
-    * Discuss potential reasons for observed differences in performance.
+   - __Data and Datasets:__
+      - The dataset being used here is the Hugging Face's b-mc2/sql-create-context. This combines both the Spider and WikiSQL datasets with additional context through the database schema related information.
+      - The dataset has the columns: question, answer, context. This provides so much feasibility for the developers to create their own context based prompts based on the pre-trained models.
+      - The usage of this model for training helps during the inference. The users just need to provide the relevant db schema to the model along with the question which can generate SQL. 
+
+   - __Fine-tuning Phi-2__
+      - By splitting the dataset of 78k rows into Train (74.1k), Validation (2.34k), Test (1.56k) datasets, we'll prepare the dataset.
+      - With the dataset columns, we will prepare a instruct prompt for the Phi-2 which will be used for fine-tuning.
+      - Configuring BitsAndBytes for quantization is a crucial step and leads to easier and efficient fine-tuning.
+      - Configuring Training Arguments / Hyperparameters with relevant values.
+      - Configuring Lora parameters is also a crucial step, as it will ensure parameter efficient fine-tuning.
+      - After this we can instantiate the Trainer Module from transformers, and start fine-tuning.
+      - Must consider the possibility of mismatched versions or gpu related issues during fine-tuning and resolve them.
+      - At each step, we should fine-tune over validation dataset, to understand the state of configurations.
+
+   - __Comparison with DeFoG SQLCoder__ 
+      - Once fine-tuning is completed, we should store the model in local or hf_hub.
+      - In a new kernel, using the test dataset, we shall infer on the fine-tuned phi-2 model, and store various factors of result.
+      - In another new kernel, using the test dataset, we shall infer on the defog SQLCoder-7b model, and store various factors of result.
+      - Storing the scores of Phi-2 and Defog SQLCoder and saving them in another csv file helps in evaluation.
+
+   - __Evaluation Metrics__
+      - Once the csv file is created, we load the    
+   Measure accuracy for both Phi-2 and DeFog models on each dataset and difficulty level. Track additional metrics relevant to your research questions, such as:
+      - Inference time: Measure the time it takes for each model to generate SQL queries on a representative CPU machine (e.g., laptop).
+   Calculate and analyze statistical significance to determine if any observed differences in performance are statistically significant.
+
+   - __Analysis and Findings__   
+   
+   Compare the performance and interpretability of Phi-2 and DeFog across all difficulty levels. Analyze the trade-offs between accuracy and deployability for each model.
+   Draw conclusions about whether Phi-2 can achieve comparable accuracy to DeFog while remaining interpretable and deployable on low-computing devices.
+   Discuss the implications of your findings for NL2SQL research and development, highlighting the potential of lightweight models like Phi-2 for democratizing database access and enabling user-friendly NL2SQL applications.
 
 ---
 **5. Discussion**
