@@ -210,17 +210,17 @@ Evaluating the performance of your fine-tuned Phi-2 for NL2SQL requires choosing
       - Storing the scores of Phi-2 and Defog SQLCoder and saving them in another csv file helps in evaluation.
 
    - __Evaluation Metrics__
-      - Once the csv file is created, we load the    
-   Measure accuracy for both Phi-2 and DeFog models on each dataset and difficulty level. Track additional metrics relevant to your research questions, such as:
-      - Inference time: Measure the time it takes for each model to generate SQL queries on a representative CPU machine (e.g., laptop).
-   Calculate and analyze statistical significance to determine if any observed differences in performance are statistically significant.
+      - Once the csv file is created, we load the scoring dataframe.
+      - From the columns of scoring dataframe we will fetch the generated SQL and actual SQL and compare them.
+      - The inference times, gpu usage per inference, overall gpu usage, cpu usage per inference, overall cpu usage will also be considered to establish comparision between Phi-2 and Defog SQLCoder.
 
    - __Analysis and Findings__   
-   
-   Compare the performance and interpretability of Phi-2 and DeFog across all difficulty levels. Analyze the trade-offs between accuracy and deployability for each model.
-   Draw conclusions about whether Phi-2 can achieve comparable accuracy to DeFog while remaining interpretable and deployable on low-computing devices.
-   Discuss the implications of your findings for NL2SQL research and development, highlighting the potential of lightweight models like Phi-2 for democratizing database access and enabling user-friendly NL2SQL applications.
+      - The findings shall be documented and a deck shall be prepared to showcase the detailed analysis.
+      - The comparision will also showcase if the fine-tuned Phi-2 is better than Defog SQLCoder.
 
+---
+
+```txt
 ---
 **5. Discussion**
 
@@ -242,3 +242,4 @@ __References:__
 - "Fine-tuning Language Models for NL2SQL with Noisy Data" by Chen et al. (2023): Explores fine-tuning LLMs for NL2SQL on noisy and incomplete datasets, addressing a common challenge in real-world applications.
 - "Learning to Generate SQL Query Plans from Natural Language Descriptions" by Yin et al. (2022): Introduces a novel approach for NL2SQL that generates query plans alongside SQL statements, providing more flexibility and efficiency.
 - "A Survey of Neural Natural Language to SQL Parsing" by Hu et al. (2021): Offers a comprehensive overview of various neural LLM-based approaches for NL2SQL, including their strengths and weaknesses.
+```
