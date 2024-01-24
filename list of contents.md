@@ -1,0 +1,40 @@
+## List of contents:
+
+- Literature Review
+  - LLMs and Fine tuning
+    - Architecture
+    - Training
+    - Capabilities
+    - Fine-tuning LLMs
+  - NL2SQL
+    - Applications of NL2SQL
+    - Common Challenges in NL2SQL
+    - Existing Approaches to NL2SQL
+    -  Fine tuning LLMs for NL2SQL usecases
+  - Phi-2 and Defog SQLCoder LLMs
+    - Phi-2
+      - Architecture
+      - Training
+      - Strength
+      - Weakness
+      - Required Hardware
+    - Defog SQLCoder
+      - Architecture
+      - Training
+      - Strength
+      - Weakness
+      - Required Hardware
+  - Challenges working with Big LLMs
+    - Inference Memory
+    - Training Memory
+    - Computation Cost
+  - Finetuning Phi-2 for NL2SQL
+    - Dataset Selection
+    - Fine-tuning Phi-2 for NL2SQL
+    - Evaluating Fine-tuned Phi-2
+- Methodology
+  - Datasets & Pre-processing
+  - Fine-tuning Phi-2
+  - Evaluation Metrics
+  - Comparison with DeFoG SQLCoder
+  - Analysis and Findings
