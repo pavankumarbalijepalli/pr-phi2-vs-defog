@@ -38,3 +38,21 @@
   - Evaluation Metrics
   - Comparison with DeFoG SQLCoder
   - Analysis and Findings
+
+## References
+- https://arxiv.org/abs/1706.03762
+- https://arxiv.org/pdf/2307.06435.pdf
+- https://link.springer.com/chapter/10.1007/978-981-16-1342-5_21
+- https://www.cidrdb.org/cidr2024/papers/p81-jindal.pdf
+- https://link.springer.com/chapter/10.1007/978-981-99-4626-6_66
+- https://blog.research.google/2022/04/pathways-language-model-palm-scaling-to.html
+- https://huggingface.co/blog/large-language-models
+- https://www.researchgate.net/publication/349611371_A_cost-benefit_analysis_of_GPU-based_EC2_instances_for_a_deep_learning_algorithm
+- https://www.paperspace.com/gpu-cloud-comparison
+- https://www.vldb.org/pvldb/vol16/p1534-fu.pdf
+- https://www.microsoft.com/en-us/research/publication/textbooks-are-all-you-need/
+- https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/
+- https://arxiv.org/abs/2308.08285
+- https://arxiv.org/pdf/2310.06825.pdf
+- https://defog.ai/blog/open-sourcing-sqlcoder2-7b/
+- https://www.deeplearning.ai/courses/generative-ai-with-llms/
