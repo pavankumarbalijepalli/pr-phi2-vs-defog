@@ -1,0 +1,172 @@
+CREATE TABLE DimDate (
+  DateID int, -- Unique Identifier for Dates in the Dimension Table
+  Calendar date, -- Represents the Calendar Date for DimDate Table
+  DayNumberOfWeek tinyint, -- Day Number of Week Indicator
+  EnglishDayNameOfWeek nvarchar, -- Represents the day of the week in English for the given date
+  DayNumberOfMonth tinyint, -- Represents the day number of the month in the DimDate table
+  DayNumberOfYear smallint, -- Represents the day number of the year in the DimDate table
+  WeekNumberOfYear tinyint, -- Represents the week number of the year for the given date
+  EnglishMonthName nvarchar, -- English Month Name Column represents the month in English
+  MonthNumberOfYear tinyint, -- Represents the month number of the year in the DimDate table
+  CalendarQuarter tinyint, -- Represents the Calendar Quarter associated with the date
+  CalendarYear smallint, -- Represents the Calendar Year in the DimDate table
+  CalendarSemester tinyint, -- Indicates the Semester of the Calendar Year
+  ShortEnglishMonthName varchar, -- Short English Month Name Column: Displays the month name in a shortened English format
+  MonthNum varchar, -- Represents the month number in the date format
+  WeekNum varchar, -- Represents the week number associated with the date
+  WeekDisplay varchar, -- Week Display Format for Date Representation
+  FinancialYear int, -- Financial Year Representing the Year for Financial Analysis
+  FinancialQuarter int, -- Represents the Financial quarter associated with the date
+  PRIMARY KEY (DateID)
+);
+
+CREATE TABLE DimProductSubCategory (
+  ProductSubCategoryID int, -- Unique Identifier for Product Sub-Category
+  ProductCategoryID int, -- Unique Identifier for Product Category in Sub-Category Table
+  SubCategoryName varchar, -- SubCategoryName represents the name of a product subcategory
+  PRIMARY KEY (ProductSubCategoryID),
+  FOREIGN KEY (DimProductSubCategory.ProductCategoryID) REFERENCES (DimProductCategory.ProductCategoryID)
+);
+
+CREATE TABLE DimOrders (
+  OrderID int, -- Unique Identifier for Orders
+  OrderDate date, -- Order Date Represents the Time When an Order Was Placed
+  CustomerID int, -- Unique Identifier for Customers in Orders
+  ClientIDNumber varchar, -- Unique Identifier for Clients in DimOrders
+  ClientGUID varchar, -- Unique Identifier for Clients in DimOrders
+  PRIMARY KEY (OrderID),
+  FOREIGN KEY (DimOrders.ClientID) REFERENCES (DimClient.ClientID),
+  FOREIGN KEY (DimOrders.EmployeeID) REFERENCES (DimEmployee.EmployeeID),
+  FOREIGN KEY (DimOrders.ShipmentID) REFERENCES (DimShipment.ShipmentID),
+  FOREIGN KEY (DimOrders.CustomerID) REFERENCES (DimCustomer.CustomerID)
+);
+
+CREATE TABLE DimCustomer (
+  CustomerID int, -- Unique Identifier for Customers
+  FirstName nvarchar, -- First Name of Customers
+  MobileNumber nvarchar, -- Mobile Number for Customers
+  ClientIDNumber varchar, -- Unique Identifier for Customers
+  ClientGUID varchar, -- Unique Identifier for Each Customer
+  PRIMARY KEY (CustomerID),
+  FOREIGN KEY (DimCustomer.EmployeeID) REFERENCES (DimEmployee.EmployeeID)
+);
+
+CREATE TABLE DimProductCategory (
+  ProductCategoryID int, -- Unique Identifier for Product Categories
+  CategoryName varchar, -- Category Name representing the product's classification
+  ClientIDNumber nvarchar, -- Unique Client ID Number for Product Category
+  ClientGUID varchar, -- Unique Identifier for Client in Product Category Dimension
+  PRIMARY KEY (ProductCategoryID)
+);
+
+CREATE TABLE FactSales (
+  ProductID int, -- Unique Identifier for Products in Sales Facts
+  EmployeeID int, -- Unique Identifier for Sales Employees
+  UnitPrice float, -- Represents the unit price for each sale in the FactSales table
+  ExtendedAmount float, -- Represents the extended amount in float format
+  UnitPriceDiscountPct float, -- Represents the percentage discount applied to the unit price in sales transactions
+  DiscountAmount float, -- Represents the discount amount applied to a sale
+  ProductStandardCost float, -- Represents the standard cost of each product in the sales fact table
+  TotalProductCost float, -- Represents the total product cost in the FactSales table
+  SalesAmount float, -- Sales Amount in FactSales Table
+  TaxAmt float, -- Represents the tax amount in the FactSales table
+  Freight float, -- Freight Float represents additional charges for shipping products
+  OrderDate date, -- Date of the Order Placed
+  DueDate datetime, -- Represents the due date for each sales transaction
+  ShipDate datetime, -- Represents the Date when the Shipment was Scheduled
+  StoreID int, -- Unique Identifier for Stores in Sales Facts
+  CustomerID int, -- Unique Identifier for Customers in Sales Facts
+  ChannelID int, -- Unique Identifier for Sales Channels
+  AuditID int, -- Unique Identifier for Audit Records in FactSales
+  DateID int, -- Unique Identifier for Sales Dates
+  ClientID int, -- Unique Identifier for Clients in FactSales
+  OrderQuantity int, -- Order Quantity represents the number of items purchased in a sale
+  UnitsSold int, -- Number of Units Sold in Sales Facts
+  UnitsIn int, -- Number of Units Sold in FactSales
+  UnitsOut int, -- Units Out represents the number of products sold in a specific time period
+  ProductCategoryID int, -- Represents the Product Category ID for each sale in the FactSales table
+  SalesOrderID int, -- Unique Identifier for Sales Orders
+  SalesOrderDetailID int, -- Unique Identifier for Sales Order Details
+  CarrierTrackingNumber nvarchar, -- Unique Identifier for Tracking Shipments
+  SpecialOfferID int, -- Unique Identifier for Special Offers in Sales Facts
+  LineTotal float, -- LineTotal represents the total amount for each sale line in the FactSales table
+  ClientIDNumber varchar, -- Unique Identifier for Clients in Sales Facts
+  ClientGUID varchar, -- Unique Identifier for Clients in FactSales
+  TimeZone varchar, -- Represents the time zone associated with the sales data
+  BucketRange varchar, -- Represents the sales bucket range
+  Returns int, -- Represents the number of sales transactions
+  ReturnID int, -- Unique Identifier for Return Transactions
+  PRIMARY KEY (),
+  FOREIGN KEY (FactSales.ProductID) REFERENCES (DimProduct.ProductID),
+  FOREIGN KEY (FactSales.EmployeeID) REFERENCES (DimEmployee.EmployeeID),
+  FOREIGN KEY (FactSales.StoreID) REFERENCES (DimStore.StoreID),
+  FOREIGN KEY (FactSales.CustomerID) REFERENCES (DimCustomer.CustomerID),
+  FOREIGN KEY (FactSales.ChannelID) REFERENCES (DimChannel.ChannelID),
+  FOREIGN KEY (FactSales.AuditID) REFERENCES (DimAudit.AuditID),
+  FOREIGN KEY (FactSales.DateID) REFERENCES (DimDate.DateID),
+  FOREIGN KEY (FactSales.ClientID) REFERENCES (DimClient.ClientID)
+);
+
+CREATE TABLE DimRegion (
+  RegionID int, -- Unique Identifier for Regions
+  Level4Value varchar, -- represents City names
+  Level3Value varchar, -- represents State Names
+  Level2Value varchar, -- represents Country Names
+  ClientIDNumber varchar, -- Unique Identifier for Clients
+  ClientGuid varchar, -- Unique Identifier for Clients in DimRegion
+  Level1Value nvarchar, -- Represents Region Names (N, S, E, W)
+  PRIMARY KEY (RegionID)
+);
+
+CREATE TABLE DimProduct (
+  ProductID int, -- Unique Identifier for Products
+  ProductName varchar, -- Product Name represents the unique name of the item in the DimProduct table
+  Colour nvarchar, -- Represents the product's colour
+  BrandID int, -- Unique Identifier for Product Brand
+  ProductSubCategoryID int, -- Identifies the Subcategory of a Product
+  PRIMARY KEY (ProductID),
+  FOREIGN KEY (DimProduct.BrandID) REFERENCES (DimBrand.BrandID),
+  FOREIGN KEY (DimProduct.OrderID) REFERENCES (DimOrders.OrderID),
+  FOREIGN KEY (DimProduct.ProductCategoryID) REFERENCES (DimProductCategory.ProductCategoryID)
+);
+
+CREATE TABLE DimStore (
+  StoreID int, -- Unique Identifier for Each Store
+  StoreUUID int, -- Unique Identifier for Each Store
+  StoreName varchar, -- Store Name represents the name of the store in the DimStore table
+  YearOpened varchar, -- Year when the store was opened
+  SquareFt int, -- Represents the square footage of a store
+  BussinessType varchar, -- Represents the business type associated with the store
+  City varchar, -- City representing the location of the store
+  State varchar, -- Represents the state associated with the store
+  Country varchar, -- Country Represents the Country of the DimStore
+  PromotionID int, -- Unique Identifier for Promotions
+  WarehouseID int, -- Unique Identifier for the Warehouse in the DimStore Table
+  RegionID int, -- RegionID represents the unique identifier for the geographical area associated with the store
+  ClientIDNumber varchar, -- Unique Identifier for Clients
+  ClientGuid varchar, -- Unique Identifier for Clients in the DimStore Table
+  StoreType varchar, -- Description: Indicates the type of store associated with each record in the DimStore table
+  PRIMARY KEY (StoreID),
+  FOREIGN KEY (DimStore.PromotionID) REFERENCES (DimPromotion.PromotionID),
+  FOREIGN KEY (DimStore.CustomerID) REFERENCES (DimCustomer.CustomerID),
+  FOREIGN KEY (DimStore.WarehouseID) REFERENCES (DimWarehouse.WarehouseID),
+  FOREIGN KEY (DimStore.RegionID) REFERENCES (DimRegion.RegionID)
+);
+
+CREATE TABLE DimSupplier (
+  SupplierID int, -- Unique Identifier for Suppliers
+  CompanyName varchar, -- Company Name represents the name of the supplier
+  Address varchar, -- Address of Supplier
+  PostalCode int, -- Postal Code represents the area code for suppliers
+  ClientIDNumber nvarchar, -- Unique Identifier for Client in Supplier Relationship
+  ClientGUID varchar, -- Unique Identifier for Client in DimSupplier Table
+  SupplierCategoryID int, -- Identifies the Supplier Category ID
+  PaymentDays int, -- Represents the number of days it takes for a supplier to receive payment
+  PRIMARY KEY (SupplierID)
+);
+
+CREATE TABLE DimBrand (
+  BrandID int, -- Unique Identifier for Brands
+  BrandName varchar, -- Brand Name of the Entity
+  PRIMARY KEY (BrandID)
+);
