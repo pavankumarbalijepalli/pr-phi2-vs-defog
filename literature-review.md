@@ -218,9 +218,7 @@ Evaluating the performance of your fine-tuned Phi-2 for NL2SQL requires choosing
       - The findings shall be documented and a deck shall be prepared to showcase the detailed analysis.
       - The comparision will also showcase if the fine-tuned Phi-2 is better than Defog SQLCoder.
 
----
 
-```txt
 ---
 **5. Discussion**
 
@@ -242,4 +240,4 @@ __References:__
 - "Fine-tuning Language Models for NL2SQL with Noisy Data" by Chen et al. (2023): Explores fine-tuning LLMs for NL2SQL on noisy and incomplete datasets, addressing a common challenge in real-world applications.
 - "Learning to Generate SQL Query Plans from Natural Language Descriptions" by Yin et al. (2022): Introduces a novel approach for NL2SQL that generates query plans alongside SQL statements, providing more flexibility and efficiency.
 - "A Survey of Neural Natural Language to SQL Parsing" by Hu et al. (2021): Offers a comprehensive overview of various neural LLM-based approaches for NL2SQL, including their strengths and weaknesses.
-```
+
